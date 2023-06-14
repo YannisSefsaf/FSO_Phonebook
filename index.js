@@ -36,9 +36,9 @@ let persons = [
   },
 ];
 
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   res.send("<h1>Welcome to Phonebook Exercise</h1>");
-});
+}); */
 
 app.get("/api/persons", (req, res) => {
   // response: render persons array as JSON
@@ -51,7 +51,7 @@ app.get("/api/persons/:id", (req, res) => {
   person ? res.json(person) : res.status(404).end();
 });
 
-app.post("/api/persons", (request, response) => {
+/* app.post("/api/persons", (request, response) => {
   // app.use(express.json()) allows to access request.body
   const body = request.body;
 
@@ -90,7 +90,7 @@ app.get("/info", (req, res) => {
   <p>Phonebook has contact details for ${persons.length} persons</p>
   <p>${Date(Date.now())}</p>
   `);
-});
+}); */
 
 const PORT = 3002;
 app.listen(PORT, () => {
