@@ -11,7 +11,7 @@ morgan.token("req-body", (req) => JSON.stringify(req.body));
 app.use(express.json());
 /* app.use(morgan("tiny")); */
 app.use(morgan(":method :url :status :response-time ms - :req-body"));
-app.use(express.static("build"));
+app.use(express.static("dist"));
 
 let persons = [
   {
