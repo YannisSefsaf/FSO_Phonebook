@@ -40,16 +40,16 @@ let persons = [
   res.send("<h1>Welcome to Phonebook Exercise</h1>");
 }); */
 
-app.get("/api/persons", (req, res) => {
+/* app.get("/api/persons", (req, res) => {
   // response: render persons array as JSON
   res.json(persons);
-});
+}); */
 
-app.get("/api/persons/:id", (req, res) => {
+/* app.get("/api/persons/:id", (req, res) => {
   const id = Number(req.params.id);
   const person = persons.find((person) => person.id === id);
   person ? res.json(person) : res.status(404).end();
-});
+}); */
 
 /* app.post("/api/persons", (request, response) => {
   // app.use(express.json()) allows to access request.body
