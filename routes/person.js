@@ -1,26 +1,20 @@
 const personRouter = require("express").Router();
-const Person = require("../models/person");
-const personController = require("../controllers/personController");
+const {
+  getAllPersons,
+  getPerson,
+  createPerson,
+  updatePerson,
+  deletePerson,
+} = require("../controllers/personController");
 
-personRouter.get("/", personController.getAllPersons);
+personRouter.get("/", getAllPersons);
 
-personRouter.get("/:id", personController.getPerson);
+personRouter.get("/:id", getPerson);
 
-personRouter.post("/", personController.createPerson);
+personRouter.post("/", createPerson);
 
-personRouter.put("/:id", personController.updatePerson);
+personRouter.put("/:id", updatePerson);
 
-personRouter.delete("/:id", personController.deletePerson);
-
-personRouter.get("/info", (req, res, next) => {
-  Person.countDocuments({})
-    .then((persons) => {
-      res.send(`
-  <p>Phonebook has contact details for ${persons} persons</p>
-  <p>${Date(Date.now())}</p>
-  `);
-    })
-    .catch((error) => next(error));
-});
+personRouter.delete("/:id", deletePerson);
 
 module.exports = personRouter;

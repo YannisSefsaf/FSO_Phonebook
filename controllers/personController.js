@@ -64,3 +64,14 @@ exports.deletePerson = (req, res, next) => {
     })
     .catch((error) => next(error));
 };
+
+exports.getInfo = (req, res, next) => {
+  Person.countDocuments({})
+    .then((persons) => {
+      res.send(`
+  <p>Phonebook has contact details for ${persons} persons</p>
+  <p>${Date(Date.now())}</p>
+  `);
+    })
+    .catch((error) => next(error));
+};
