@@ -4,8 +4,12 @@ const app = express();
 const cors = require("cors");
 const personRouter = require("./routes/person");
 const infoRouter = require("./routes/info");
-const middleware = require("./utils/middleware");
-const logger = require("./utils/logger");
+const {
+  unknownEndpoint,
+  errorHandler,
+  requestLogger,
+} = require("./utils/middleware");
+const { info } = require("./utils/logger");
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
@@ -14,21 +18,21 @@ mongoose.set("strictQuery", false);
 mongoose
   .connect(config.MONGODB_URI)
   .then(() => {
-    logger.info("connected to MongoDB");
+    info("connected to MongoDB");
   })
   .catch((error) => {
-    logger.info("error connecting to MongoDB:", error.message);
+    info("error connecting to MongoDB:", error.message);
   });
 
 app.use(cors());
 app.use(express.static("dist"));
 app.use(express.json());
-app.use(middleware.requestLogger);
+app.use(requestLogger);
 
 app.use("/api/persons", personRouter);
 app.use("/info", infoRouter);
 
-app.use(middleware.unknownEndpoint);
-app.use(middleware.errorHandler);
+app.use(unknownEndpoint);
+app.use(errorHandler);
 
 module.exports = app;
